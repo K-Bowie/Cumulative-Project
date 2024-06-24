@@ -126,3 +126,6 @@ function generateUserProfile() { //added
   $("#userProfileUsername").text(currentUser.username);
   $("#userProfileAccountCreated").text(currentUser.createdAt.slice(0, 10));
 }
+
+
+console.log('Loading Users')

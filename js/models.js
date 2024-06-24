@@ -194,3 +194,6 @@ class User {
     }
   }
 }
+
+
+console.log('Loading Models')
