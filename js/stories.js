@@ -18,24 +18,24 @@ async function getAndShowStoriesOnStart() {
  * 
  * Returns the markup for the story.
  */
-function getStarHTML(story, currentUser) {
-  // Check if the provided object is an instance of Story
-  if (!(story instanceof Story)) {
-      throw new Error("The provided object is not an instance of Story");
-  }
+// function getStarHTML(story, currentUser) {
+//   // Check if the provided object is an instance of Story
+//   if (!(story instanceof Story)) {
+//       throw new Error("The provided object is not an instance of Story");
+//   }
 
-  // Create HTML markup for the story
-  const storyHTML = `
-      <div class="story">
-          <h2 class="story-title">${story.title}</h2>
-          <p class="story-author">by ${story.author}</p>
-          <div class="story-content">${story.content}</div>
-          <span class="story-date">${story.date}</span>
-      </div>
-  `;
+//   // Create HTML markup for the story
+//   const storyHTML = `
+//       <div class="story">
+//           <h2 class="story-title">${story.title}</h2>
+//           <p class="story-author">by ${story.author}</p>
+//           <div class="story-content">${story.content}</div>
+//           <span class="story-date">${story.date}</span>
+//       </div>
+//   `;
 
-  return storyHTML;
-}
+//   return storyHTML;
+// }
 
 
 function generateStoryMarkup(story, showDeleteBtn = false) { //added
@@ -64,6 +64,17 @@ function getDeleteBtnHTML() {
   return `
       <span class="trash-can">
         <i class="fas fa-trash-alt"></i>
+      </span>`;
+}
+
+/** favorite or un-favorite star for the story */
+
+function getStarHTML(story, user) {
+  const isFavorite = user.isFavorite(story);
+  const starType = isFavorite ? "fas" : "far";
+  return `
+      <span class="star">
+        <i class="${starType} fa-star"></i>
       </span>`;
 }
 
@@ -97,7 +108,7 @@ async function deleteStory(evt) {
   await putUserStoriesOnPage();
 }
 
-// $ownStories.on("click", ".trash-can", deleteStory);
+ $ownStories.on("click", ".trash-can", deleteStory);
 
 /** Handle submitting new story form. */
 
@@ -122,7 +133,7 @@ async function submitNewStory(evt) {
   $submitForm.trigger("reset");
 }
 
-// $submitForm.on("submit", submitNewStory);
+$submitForm.on("submit", submitNewStory);
 
 /******************************************************************************
  * Functionality for list of user's own stories
@@ -192,6 +203,6 @@ async function toggleStoryFavorite(evt) {
   }
 }
 
-// $storiesLists.on("click", ".star", toggleStoryFavorite);
+$storiesLists.on("click", ".star", toggleStoryFavorite);
 
 console.log('Loading Stories')

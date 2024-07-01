@@ -15,11 +15,11 @@
 
 /* User profile */
 
-.user-profile-container {
+.user-profile-box {
   padding: 10px 20px 20px;
   font-size: 14px;
 }
 
-.user-profile-container > * {
+.user-profile-box > * {
   margin: 10px 0;
 }
